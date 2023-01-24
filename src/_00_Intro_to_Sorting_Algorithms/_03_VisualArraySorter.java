@@ -1,12 +1,18 @@
 package _00_Intro_to_Sorting_Algorithms;
 
+
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
 import processing.core.PApplet;
+import processing.event.MouseEvent;
 
 /*
  * Goal: Create a program that sorts each rectangle by height!
  * 
  * 1. Create an array of ints. Do not initialize it.
- *
+ 
  *In the settings() method:
  * 2. Set the size of your window to at least 500 width 500 height
  * 
@@ -40,26 +46,47 @@ import processing.core.PApplet;
 public class _03_VisualArraySorter extends PApplet {
     static final int WIDTH = 600;
     static final int HEIGHT = 400;
+   int[] intarr ;
 
     @Override
     public void settings() {
+        height=500;
+        width=1500;
         
     }
 
     @Override
     public void setup() {
-        
+    	intarr=new int[50];
+      for (int i = 0; i < intarr.length; i++) {
+		intarr[i]=(int)random(height);
+		
+      }
+      noStroke();
     }
 
     @Override
     public void draw() {
-        
+        background(30,31,11);
+        fill(255,255,255);
+        for (int i = 0; i < intarr.length; i++) {
+			rect(i*(width/intarr.length), height, (width/intarr.length), -intarr[i]);
+		}
+        stepSort(intarr);
     }
 
     static public void main(String[] passedArgs) {
         PApplet.main(_03_VisualArraySorter.class.getName());
     }
-    
+ 
+  @Override
+public void mousePressed(MouseEvent event) {
+	// TODO Auto-generated method stub
+	super.mousePressed(event);
+	for (int i = 0; i < intarr.length; i++) {
+	intarr[i]=(int)random(height);
+	}
+}
     /*********************** DO NOT MODIFY THE CODE BELOW ********************/
     
     int startIndex = 1;
